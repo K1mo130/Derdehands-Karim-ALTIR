@@ -1,9 +1,6 @@
-package entiteit;
+package ehb.be.derdehands.entiteit;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotBlank;
 
@@ -20,16 +17,20 @@ public class Product {
     private String categorie;
 
     @DecimalMin(value = "0.0")
-    private double prijs;
+    private double price;
+
+    @ManyToOne
+    @JoinColumn(name = "Persoon_Id", nullable = false)
+    private Persoon persoon;
 
     public Product() {
     }
 
-    public Product(int id, String name, String categorie, double prijs) {
+    public Product(int id, String name, String categorie, double price) {
         this.id = id;
         this.name = name;
         this.categorie = categorie;
-        this.prijs = prijs;
+        this.price = price;
     }
 
     public int getId() {
@@ -56,12 +57,20 @@ public class Product {
         this.categorie = categorie;
     }
 
-    public double getPrijs() {
-        return prijs;
+    public double getPrice() {
+        return price;
     }
 
-    public void setPrijs(double prijs) {
-        this.prijs = prijs;
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public Persoon getPersoon() {
+        return persoon;
+    }
+
+    public void setPersoon(Persoon persoon) {
+        this.persoon = persoon;
     }
 }
 
