@@ -1,10 +1,10 @@
-package entiteit;
+package ehb.be.derdehands.entiteit;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Persoon {
@@ -17,6 +17,9 @@ public class Persoon {
 
     @NotBlank
     private String email;
+
+    @OneToMany(mappedBy = "persoon")
+    private List<Product> productList = new ArrayList<>();
 
     public Persoon() {
     }
@@ -49,5 +52,13 @@ public class Persoon {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 }
