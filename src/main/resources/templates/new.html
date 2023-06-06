@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Product</title>
+</head>
+<body>
+    <nav th:insert="~{menuTemplate::navbar}" />
+
+    <h1>Add new product</h1>
+
+    <form th:action="@{~/index}" method="POST" th:object="${savingProduct}">
+        Name: <input type="text" th:field="*{name}">
+        <br>
+        Category:
+        <select th:field="*{categorie}">
+            <option value="fruits">Fruits</option>
+            <option value="vegetables">Vegetables</option>
+            <option value="meats">Meats</option>
+        </select>
+        <br>
+        Persoon Id: <input type="text" th:field="*{persoon.userId}">
+        <br>
+        Product: <input type="text" th:field="*{price}">
+        <br>
+        <span th:if="${#fields.hasErrors()}" th:text="${#fixelds.errors()}" th:class="error_text"></span>
+        <button th:field="submit">Submit</button>
+    </form>
+
+</body>
+</html>
