@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Derdehands</title>
+</head>
+<body>
+    <nav th:insert="~{menuTemplate::navbar}" />
+
+    <table>
+        <thead>
+            <td>Name</td>
+            <td>Price</td>
+            <td>Details</td>
+        </thead>
+        <tbody>
+            <tr th:each="product : ${producten}">
+                <td> <span th:text="${product.getName()}"/></td>
+                <td> <span th:text="${product.getPrice()}"/></td>
+                <td> <a th:href="@{~/details/{id}(id = ${product.getId()})}">details</a></td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
