@@ -24,10 +24,11 @@ public class Persoon {
     public Persoon() {
     }
 
-    public Persoon(int userId, String username, String email) {
+    public Persoon(int userId, String username, String email, List<Product> productList) {
         this.userId = userId;
         this.username = username;
         this.email = email;
+        this.productList = productList;
     }
 
     public int getUserId() {
