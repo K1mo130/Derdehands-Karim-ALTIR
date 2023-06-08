@@ -2,30 +2,56 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{../style.css}">
     <title>New Product</title>
 </head>
 <body>
-    <nav th:insert="~{menuTemplate::navbar}" />
+<nav th:insert="~{menuTemplate::navbar}" />
 
-    <h1>Add new product</h1>
+<h1>Add new product</h1>
 
-    <form th:action="@{~/index}" method="POST" th:object="${savingProduct}">
-        Name: <input type="text" th:field="*{name}">
-        <br>
-        Category:
-        <select th:field="*{categorie}">
-            <option value="fruits">Fruits</option>
-            <option value="vegetables">Vegetables</option>
-            <option value="meats">Meats</option>
-        </select>
-        <br>
-        Persoon Id: <input type="text" th:field="*{persoon.userId}">
-        <br>
-        Product: <input type="text" th:field="*{price}">
-        <br>
-        <span th:if="${#fields.hasErrors()}" th:text="${#fixelds.errors()}" th:class="error_text"></span>
-        <button th:field="submit">Submit</button>
+<div class="inputForm">
+    <form action="/index" method="POST" th:csrf>
+        <h2>Persoon</h2>
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" th:field="*{savingPersoon.username}">
+            <span th:if="${#fields.hasErrors('savingPersoon.username')}" th:errors="*{savingPersoon.username}" th:class="error_text"></span>
+            <br>
+            <label for="email">Email:</label>
+            <input id="email" type="email" th:field="*{savingPersoon.email}">
+            <span th:if="${#fields.hasErrors('savingPersoon.email')}" th:errors="*{savingPersoon.email}" th:class="error_text"></span>
+        </div>
+
+        <h2>Product</h2>
+        <div>
+            <label for="name">Name:</label>
+            <input type="text" id="name" th:field="*{savingProduct.name}">
+            <span th:if="${#fields.hasErrors('savingProduct.name')}" th:errors="*{savingProduct.name}" th:class="error_text"></span>
+            <br>
+
+            <label for="category">Category:</label>
+            <select id="category" th:field="*{savingProduct.categorie}">
+                <option value="fruits">Fruits</option>
+                <option value="vegetables">Vegetables</option>
+                <option value="meats">Meats</option>
+                <option value="technology device">Technology Device</option>
+            </select>
+            <span th:if="${#fields.hasErrors('savingProduct.categorie')}" th:errors="*{savingProduct.categorie}" th:class="error_text"></span>
+            <br>
+
+            <label for="price">Price:</label>
+            <input type="text" id="price" th:field="*{savingProduct.price}">
+            <span th:if="${#fields.hasErrors('savingProduct.price')}" th:errors="*{savingProduct.price}" th:class="error_text"></span>
+            <br>
+
+            <label for="discription">Discription</label><br>
+            <textarea cols="90" rows="10" id="discription" th:field="*{savingProduct.discription}"></textarea>
+            <span th:if="${#fields.hasErrors('savingProduct.discription')}" th:errors="*{savingProduct.discription}" th:class="error_text"></span>
+        </div>
+
+        <input type="submit" value="Submit">
     </form>
-
+</div>
 </body>
 </html>
