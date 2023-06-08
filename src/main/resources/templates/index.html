@@ -2,10 +2,15 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{../style.css}">
     <title>Derdehands</title>
 </head>
 <body>
     <nav th:insert="~{menuTemplate::navbar}" />
+
+    <h1>Welcome to Derdehands</h1>
+
+    <h2>Featured Products</h2>
 
     <table>
         <thead>
@@ -21,5 +26,6 @@
             </tr>
         </tbody>
     </table>
+    <a id="newProduct" href="new">New Product</a>
 </body>
 </html>
