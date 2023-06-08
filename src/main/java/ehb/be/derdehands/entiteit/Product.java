@@ -16,6 +16,9 @@ public class Product {
     @NotBlank
     private String categorie;
 
+    @NotBlank
+    private String discription;
+
     @DecimalMin(value = "0.0")
     private double price;
 
@@ -26,11 +29,13 @@ public class Product {
     public Product() {
     }
 
-    public Product(int id, String name, String categorie, double price) {
+    public Product(int id, String name, String categorie, String discription, double price, Persoon persoon) {
         this.id = id;
         this.name = name;
         this.categorie = categorie;
+        this.discription = discription;
         this.price = price;
+        this.persoon = persoon;
     }
 
     public int getId() {
@@ -55,6 +60,14 @@ public class Product {
 
     public void setCategorie(String categorie) {
         this.categorie = categorie;
+    }
+
+    public String getDiscription() {
+        return discription;
+    }
+
+    public void setDiscription(String discription) {
+        this.discription = discription;
     }
 
     public double getPrice() {
