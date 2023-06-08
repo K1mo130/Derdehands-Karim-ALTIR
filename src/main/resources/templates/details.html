@@ -2,20 +2,25 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{../style.css}">
     <title>Details</title>
 </head>
 <body>
-  <div th:object="${persoon}">
-    <p><strong>Username:</strong> <span th:text="*{username}"></span></p>
-    <p><strong>Email:</strong> <span th:text="*{email}"></span></p>
-  </div>
-  <div th:object="${product}">
-      <p><strong>Product's name: </strong><span th:text="*{name}"></span></p>
-      <p><strong>Category: </strong><span th:text="*{categorie}"></span></p>
-      <p><strong>Price: </strong><span th:text="*{price}"></span></p>
-  </div>
 
-  <a th:href="@{~/index}">Go back to the homepage</a>
+    <h1>Details</h1>
+    <p>here's you can see the details</p>
+
+    <div th:object="${persoon}">
+        <p><strong>Username:</strong> <span th:text="*{username}"></span></p>
+        <p><strong>Email:</strong> <span th:text="*{email}"></span></p>
+    </div>
+    <div th:object="${product}">
+        <p><strong>Product's name: </strong><span th:text="*{name}"></span></p>
+        <p><strong>Category: </strong><span th:text="*{categorie}"></span></p>
+        <p><strong>Price: </strong><span th:text="*{price}"></span></p>
+    </div>
+
+    <a th:href="@{~/index}">Go back to the homepage</a>
 
 </body>
 </html>
