@@ -44,31 +44,48 @@ public class ProductController {
         return new Product();
     }
 
+    @ModelAttribute("savingPersoon")
+    public Persoon persoonForForm() {
+        return new Persoon();
+    }
+
     @GetMapping("/new")
     public String showNewProduct(ModelMap modelMap) {
         return "new";
     }
 
     @PostMapping("/index")
-    public String insertNewProduct(@Valid @ModelAttribute("savingProduct") Product product,
-                                   BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
+    public String insertNewProductAndNewPersoon(@Valid @ModelAttribute("savingProduct") Product product,
+                                                BindingResult productBindingResult,
+                                                @Valid @ModelAttribute("savingPersoon") Persoon persoon,
+                                                BindingResult persoonBindingResult) {
+        if (productBindingResult.hasErrors() || persoonBindingResult.hasErrors()) {
             return "/new";
         }
 
+        Optional<Persoon> existingPersoon = mPersoonDao.findByEmail(persoon.getEmail());
+
+        if (existingPersoon.isPresent()) {
+            product.setPersoon(existingPersoon.get());
+        } else {
+            mPersoonDao.save(persoon);
+            product.setPersoon(persoon);
+        }
+
         mProductDao.save(product);
+
         return "redirect:/index";
     }
 
     @GetMapping("/details/{id}")
-    public String showProductDetails(@PathVariable(value = "id") int id,
+    public String showProductEnPersoonDetails(@PathVariable(value = "id") int id,
                                      ModelMap modelMap) {
-        Optional<Persoon> persoon = mPersoonDao.findById(id);
-        Optional<Product> product = mProductDao.findById(id);
+        Optional<Persoon> persoonOptional = mPersoonDao.findById(id);
+        Optional<Product> productOptional = mProductDao.findById(id);
 
-        if (persoon.isPresent()) {
-            modelMap.addAttribute("persoon", persoon.get());
-            modelMap.addAttribute("product", product.get());
+        if (persoonOptional.isPresent() && productOptional.isPresent()) {
+            modelMap.addAttribute("persoon", persoonOptional.get());
+            modelMap.addAttribute("product", productOptional.get());
             return "details";
         }
 
