@@ -49,6 +49,13 @@ h1, h2, h3 {
     text-align: center;
 }
 
+.success-message {
+    text-align: center;
+    padding: 10px 20px;
+    border: 2px solid green;
+    color: green;
+}
+
 input[type=text], input[type=email], select {
     width: 100%;
     padding: 12px 20px;
