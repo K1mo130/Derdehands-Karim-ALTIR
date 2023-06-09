@@ -6,9 +6,11 @@
     <title>Details</title>
 </head>
 <body>
+    <nav th:insert="~{menuTemplate::navbar}" />
+
 
     <h1>Details</h1>
-    <p>here's you can see the details</p>
+    <p style="font-size: 20px">here's you can see the details:</p>
 
     <div th:object="${persoon}">
         <p><strong>Username:</strong> <span th:text="*{username}"></span></p>
@@ -18,9 +20,10 @@
         <p><strong>Product's name: </strong><span th:text="*{name}"></span></p>
         <p><strong>Category: </strong><span th:text="*{categorie}"></span></p>
         <p><strong>Price: </strong><span th:text="*{price}"></span></p>
+        <p><strong>Disceription: </strong><span th:text="*{discription}"></span></p>
     </div>
 
-    <a th:href="@{~/index}">Go back to the homepage</a>
+    <!--<a th:href="@{~/index}">Go back to the homepage</a>-->
 
 </body>
 </html>
