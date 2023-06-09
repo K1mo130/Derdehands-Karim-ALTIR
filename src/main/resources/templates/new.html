@@ -27,6 +27,8 @@
         <div>
             <label for="name">Name:</label>
             <input type="text" id="name" th:field="*{savingProduct.name}">
+
+            <br>
             <span th:if="${#fields.hasErrors('savingProduct.name')}" th:errors="*{savingProduct.name}" th:class="error_text"></span>
             <br>
 
@@ -38,17 +40,25 @@
                 <option value="drinks">Drinks</option>
                 <option value="technology device">Technology Device</option>
             </select>
+
+            <br>
             <span th:if="${#fields.hasErrors('savingProduct.categorie')}" th:errors="*{savingProduct.categorie}" th:class="error_text"></span>
             <br>
 
             <label for="price">Price:</label>
             <input type="text" id="price" th:field="*{savingProduct.price}">
+
+            <br>
             <span th:if="${#fields.hasErrors('savingProduct.price')}" th:errors="*{savingProduct.price}" th:class="error_text"></span>
             <br>
 
             <label for="discription">Discription</label><br>
             <textarea cols="90" rows="10" id="discription" th:field="*{savingProduct.discription}"></textarea>
+
+            <br>
             <span th:if="${#fields.hasErrors('savingProduct.discription')}" th:errors="*{savingProduct.discription}" th:class="error_text"></span>
+            <br>
+
         </div>
 
         <input type="submit" value="Submit">
