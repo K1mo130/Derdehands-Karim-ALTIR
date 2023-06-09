@@ -12,6 +12,11 @@
 
     <h2>Featured Products</h2>
 
+    <!-- Check if the success message exists in the model -->
+    <div th:if="${successMessage}" class="success-message">
+        <p th:text="${successMessage}"></p>
+    </div>
+
     <table>
         <thead>
             <td>Name</td>
